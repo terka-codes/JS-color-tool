@@ -39,22 +39,10 @@ const convertHexToRGB = (hex) => {
     return {r,g,b}
   }
 
-  const convertRGBtoHex = (r, g, b) => {
-    r = r.toString(16)
-    g = g.toString(16)
-    b = b.toString(16)
-
-    if (r.length < 2) {
-        r = r[0] + r[0]
-    }
-    
-    if (g.length < 2) {
-        g = g[0] + g[0]
-    }
-
-    if (b.length < 2) {
-        b = b[0] + b[0]
-    }
+  const convertRGBToHex = (r, g, b) => {
+    r = ("0" + r.toString(16)).slice(-2)
+    g = ("0" + g.toString(16)).slice(-2)
+    b = ("0" + b.toString(16)).slice(-2)
 
     let hex = "#" + r + g + b
 
