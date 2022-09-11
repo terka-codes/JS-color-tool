@@ -15,10 +15,8 @@ hexInput.addEventListener("keyup", () => {
     inputColor.style.background = "#" + strippedHex
 })
 
-slider.addEventListener("change", () => {
-    let value = slider.value
-
-    sliderText.innerText = value + " %"
+slider.addEventListener("input", () => {
+    sliderText.innerText = `${slider.value}%`
 })
 
 const isValidHex = (hex) => {
@@ -31,24 +29,24 @@ const isValidHex = (hex) => {
 }
 
 const convertHexToRGB = (hex) => {
-    if(!isValidHex(hex)) return null;
-    
-    let strippedHex = hex.replace('#','');
-    
-    if(strippedHex.length === 3) {
-      strippedHex = strippedHex[0] + strippedHex[0]
-      + strippedHex[1] + strippedHex[1]
-      + strippedHex[2] + strippedHex[2];
-    }
-    
-    const r  = parseInt(strippedHex.substring(0,2), 16);
-    const g  = parseInt(strippedHex.substring(2,4), 16);
-    const b  = parseInt(strippedHex.substring(4,6), 16);
-    
-    return {r,g,b}
-  }
+    if(!isValidHex(hex)) return null
 
-  const convertRGBToHex = (r, g, b) => {
+    let strippedHex = hex.replace('#','')
+
+    if(strippedHex.length === 3) {
+        strippedHex = strippedHex[0] + strippedHex[0]
+        + strippedHex[1] + strippedHex[1]
+        + strippedHex[2] + strippedHex[2]
+    }
+
+    const r  = parseInt(strippedHex.substring(0,2), 16)
+    const g  = parseInt(strippedHex.substring(2,4), 16)
+    const b  = parseInt(strippedHex.substring(4,6), 16)
+
+    return {r,g,b}
+}
+
+const convertRGBToHex = (r, g, b) => {
     r = ("0" + r.toString(16)).slice(-2)
     g = ("0" + g.toString(16)).slice(-2)
     b = ("0" + b.toString(16)).slice(-2)
@@ -56,4 +54,28 @@ const convertHexToRGB = (hex) => {
     let hex = "#" + r + g + b
 
     return hex
-  }
+}
+
+const alterColor = (hex, percentage) => {
+    const {r,g,b} = convertHexToRGB(hex)
+
+    const amount = Math.floor((percentage / 100) * 255)
+
+    let newR = r + amount
+    let newG = g + amount
+    let newB = b + amount
+
+    newR > 255 ? newR = 255 : newR < 0 ? newR = 0 : newR
+    newG > 255 ? newG = 255 : newG < 0 ? newG = 0 : newG
+    newB > 255 ? newB = 255 : newB < 0 ? newB = 0 : newB
+
+    percentage === 0 ? newR = 0 : newR
+    percentage === 0 ? newG = 0 : newG
+    percentage === 0 ? newB = 0 : newB
+
+    console.log(newR, newG, newB)
+
+    return convertRGBToHex(newR, newG, newB)
+}
+
+console.log(alterColor("#fff", 10))
