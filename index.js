@@ -2,6 +2,8 @@ let hexInput = document.getElementById("hexInput")
 let inputColor = document.getElementById("inputColor")
 let slider = document.getElementById("slider")
 let sliderText = document.getElementById("sliderText")
+let alteredColor = document.getElementById("alteredColor")
+let alteredColorText = document.getElementById("alteredColorText")
 
 
 let hexChars = /[0-9A-F]/i
@@ -17,6 +19,12 @@ hexInput.addEventListener("keyup", () => {
 
 slider.addEventListener("input", () => {
     sliderText.innerText = `${slider.value}%`
+
+    if (!isValidHex(hex)) return
+
+    const alteredHex = alterColor(hexInput.value, slider.value)
+    alteredColor.style.background = alteredHex
+    alteredColorText.innerText = alteredHex
 })
 
 const isValidHex = (hex) => {
@@ -65,17 +73,15 @@ const alterColor = (hex, percentage) => {
     let newG = g + amount
     let newB = b + amount
 
+    // ensure the nuber is between 0 and 255
     newR > 255 ? newR = 255 : newR < 0 ? newR = 0 : newR
     newG > 255 ? newG = 255 : newG < 0 ? newG = 0 : newG
     newB > 255 ? newB = 255 : newB < 0 ? newB = 0 : newB
 
+    // if the percentaze is 0, make the color #000000
     percentage === 0 ? newR = 0 : newR
     percentage === 0 ? newG = 0 : newG
     percentage === 0 ? newB = 0 : newB
 
-    console.log(newR, newG, newB)
-
     return convertRGBToHex(newR, newG, newB)
 }
-
-console.log(alterColor("#fff", 10))
