@@ -1,5 +1,8 @@
 let hexInput = document.getElementById("hexInput")
 let inputColor = document.getElementById("inputColor")
+let slider = document.getElementById("slider")
+let sliderText = document.getElementById("sliderText")
+
 
 let hexChars = /[0-9A-F]/i
 
@@ -10,6 +13,12 @@ hexInput.addEventListener("keyup", () => {
     let strippedHex = hex.replace('#', '')
 
     inputColor.style.background = "#" + strippedHex
+})
+
+slider.addEventListener("change", () => {
+    let value = slider.value
+
+    sliderText.innerText = value + " %"
 })
 
 const isValidHex = (hex) => {
