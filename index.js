@@ -2,7 +2,6 @@ let hexInput = document.getElementById("hexInput")
 let inputColor = document.getElementById("inputColor")
 
 let hexChars = /[0-9A-F]/i
-let myRGB = ""
 
 hexInput.addEventListener("keyup", () => {
     let hex = hexInput.value
@@ -40,4 +39,24 @@ const convertHexToRGB = (hex) => {
     return {r,g,b}
   }
 
-  console.log(convertHexToRGB("ffe"));
+  const convertRGBtoHex = (r, g, b) => {
+    r = r.toString(16)
+    g = g.toString(16)
+    b = b.toString(16)
+
+    if (r.length < 2) {
+        r = r[0] + r[0]
+    }
+    
+    if (g.length < 2) {
+        g = g[0] + g[0]
+    }
+
+    if (b.length < 2) {
+        b = b[0] + b[0]
+    }
+
+    let hex = "#" + r + g + b
+
+    return hex
+  }
