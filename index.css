@@ -70,10 +70,12 @@ label, p {
 .toggle-btn.toggled > .inner-circle {
     transform: translateX(26px);
     background: #242323;
+    transition: 0.25s ease-in-out;
 }
 
 .unselected {
     opacity: 0.35;
+    transition: 0.25s ease-in-out;
 }
 
 .inner-circle {
@@ -84,6 +86,7 @@ label, p {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    transition: 0.25s ease-in-out;
 }
 
 #slider {

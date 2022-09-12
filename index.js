@@ -4,7 +4,9 @@ let slider = document.getElementById("slider")
 let sliderText = document.getElementById("sliderText")
 let alteredColor = document.getElementById("alteredColor")
 let alteredColorText = document.getElementById("alteredColorText")
-
+let lightenText = document.getElementById("lightenText")
+let darkenText = document.getElementById("darkenText")
+let toggleBtn = document.getElementById("toggleBtn")
 
 let hexChars = /[0-9A-F]/i
 
@@ -15,6 +17,18 @@ hexInput.addEventListener("keyup", () => {
     let strippedHex = hex.replace('#', '')
 
     inputColor.style.background = "#" + strippedHex
+})
+
+toggleBtn.addEventListener("click", () => {
+    if (toggleBtn.classList.contains("toggled")) {
+        toggleBtn.classList.remove("toggled")
+        lightenText.classList.remove("unselected")
+        darkenText.classList.add("unselected")
+    } else {
+        toggleBtn.classList.add("toggled")
+        lightenText.classList.add("unselected")
+        darkenText.classList.remove("unselected")
+    }
 })
 
 slider.addEventListener("input", () => {
