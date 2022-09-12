@@ -20,11 +20,12 @@ hexInput.addEventListener("keyup", () => {
 slider.addEventListener("input", () => {
     sliderText.innerText = `${slider.value}%`
 
-    if (!isValidHex(hex)) return
+    if (!isValidHex(hexInput.value)) return
 
     const alteredHex = alterColor(hexInput.value, slider.value)
     alteredColor.style.background = alteredHex
-    alteredColorText.innerText = alteredHex
+    alteredColorText.innerText = "" + alteredHex
+    // change the text color depending on the color displayed and style it in css
 })
 
 const isValidHex = (hex) => {
