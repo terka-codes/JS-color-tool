@@ -14,12 +14,19 @@ hexInput.addEventListener("keyup", () => {
     let hex = hexInput.value
     if (!isValidHex(hex)) return
 
-    let strippedHex = hex.replace('#', '')
+    reset()
+})
+
+const reset = () => {
+    slider.value = 0
+    sliderText.innerText = `${slider.value}%`
+    
+    let strippedHex = hexInput.value.replace('#', '')
 
     inputColor.style.background = "#" + strippedHex
     alteredColor.style.background = "#" + strippedHex
     alteredColorText.innerText = "#" + strippedHex
-})
+}
 
 toggleBtn.addEventListener("click", () => {
     if (toggleBtn.classList.contains("toggled")) {
@@ -31,15 +38,7 @@ toggleBtn.addEventListener("click", () => {
         lightenText.classList.add("unselected")
         darkenText.classList.remove("unselected")
     }
-
-    slider.value = 0
-    sliderText.innerText = `${slider.value}%`
-
-    let strippedHex = hexInput.value.replace('#', '')
-
-    inputColor.style.background = "#" + strippedHex
-    alteredColor.style.background = "#" + strippedHex
-    alteredColorText.innerText = "#" + strippedHex
+    reset()
 })
 
 slider.addEventListener("input", () => {
