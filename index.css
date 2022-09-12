@@ -173,13 +173,15 @@ a:hover {
 
 ::placeholder {
     color: #df6c5d;
-    opacity: 1; /* Firefox */
+    opacity: 0.5; /* Firefox */
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color: #df6c5d;
+   opacity: 0.5;
   }
   
   ::-ms-input-placeholder { /* Microsoft Edge */
    color: #df6c5d;
+   opacity: 0.5;
   }
