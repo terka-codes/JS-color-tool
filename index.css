@@ -2,7 +2,7 @@ html {
     margin: 0;
     padding: 0;
     background: #242323;
-    color: #d2d2d2;
+    color: #dddddd;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -52,6 +52,38 @@ label, p {
     font-size: 1.1rem;;
     border-radius: 25px;
     padding: 0 15px 0 15px;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn {
+    margin-top: 17.5px;
+    width: 60px;
+    height: 35px;
+    background-color: #df6c5d;
+    border-radius: 70px;
+}
+
+.toggle-btn.toggled > .inner-circle {
+    transform: translateX(26px);
+    background: #242323;
+}
+
+.unselected {
+    opacity: 0.35;
+}
+
+.inner-circle {
+    margin: 3px;
+    width: 28px;
+    height: 28px;
+    background: #dddddd;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 #slider {
