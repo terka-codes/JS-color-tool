@@ -17,6 +17,8 @@ hexInput.addEventListener("keyup", () => {
     let strippedHex = hex.replace('#', '')
 
     inputColor.style.background = "#" + strippedHex
+    alteredColor.style.background = "#" + strippedHex
+    alteredColorText.innerText = "#" + strippedHex
 })
 
 toggleBtn.addEventListener("click", () => {
@@ -29,6 +31,15 @@ toggleBtn.addEventListener("click", () => {
         lightenText.classList.add("unselected")
         darkenText.classList.remove("unselected")
     }
+
+    slider.value = 0
+    sliderText.innerText = `${slider.value}%`
+
+    let strippedHex = hexInput.value.replace('#', '')
+
+    inputColor.style.background = "#" + strippedHex
+    alteredColor.style.background = "#" + strippedHex
+    alteredColorText.innerText = "#" + strippedHex
 })
 
 slider.addEventListener("input", () => {
@@ -36,7 +47,9 @@ slider.addEventListener("input", () => {
 
     if (!isValidHex(hexInput.value)) return
 
-    const alteredHex = alterColor(hexInput.value, slider.value)
+    const valueAddition = toggleBtn.classList.contains("toggled") ? -slider.value : slider.value
+    
+    const alteredHex = alterColor(hexInput.value, valueAddition)
     alteredColor.style.background = alteredHex
     alteredColorText.innerText = "" + alteredHex
     // change the text color depending on the color displayed and style it in css
